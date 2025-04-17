@@ -1,19 +1,18 @@
 name: Deploy to dipapp.nl
 
-on:
-  push:
+on: push
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Upload to FTP
-      uses: sebastianpopp/ftp-action@v3
+      uses: sebastianpopp/git-ftp-action@releases/v3
       with:
-        host: ${{ secrets.FTP_SERVER }}
+        url: "sftp://dipapq.ssh.transip.me"
         user: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         localDir: "./"
